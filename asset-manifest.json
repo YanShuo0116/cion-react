@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cion-react/static/css/main.13d8ead7.css",
+    "main.js": "/cion-react/static/js/main.6396f9b7.js",
+    "static/js/453.4f3c2049.chunk.js": "/cion-react/static/js/453.4f3c2049.chunk.js",
+    "index.html": "/cion-react/index.html",
+    "main.13d8ead7.css.map": "/cion-react/static/css/main.13d8ead7.css.map",
+    "main.6396f9b7.js.map": "/cion-react/static/js/main.6396f9b7.js.map",
+    "453.4f3c2049.chunk.js.map": "/cion-react/static/js/453.4f3c2049.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.13d8ead7.css",
+    "static/js/main.6396f9b7.js"
+  ]
+}
