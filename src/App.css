@@ -12,87 +12,121 @@ body {
 }
 
 .App {
+  text-align: center;
   min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.crypto-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px 5px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .app-header {
-  background-color: #1a1a1a;
-  padding: 20px;
-  color: white;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  z-index: 100;
-  border-bottom: 1px solid #333;
 }
 
-.app-header h1 {
-  margin-bottom: 15px;
-  font-size: 28px;
-  position: relative;
-  display: inline-block;
-  text-shadow: 0 2px 10px rgba(107, 0, 255, 0.6);
-  background: linear-gradient(45deg, #6b00ff, #00bfff);
+.app-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  box-shadow: 0 0 30px rgba(48, 207, 208, 0.3);
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.app-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #00ff88, #00b4d8, #6b00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleGlow 8s ease-in-out infinite alternate;
+  animation: titleGlow 3s ease-in-out infinite alternate, titleAppear 1s ease-out forwards;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.app-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00ff88, transparent);
+  animation: titleLine 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(48, 207, 208, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(107, 0, 255, 0.5);
+  }
 }
 
 @keyframes titleGlow {
   0% {
-    filter: drop-shadow(0 0 8px rgba(107, 0, 255, 0.6));
-  }
-  50% {
-    filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.8));
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
   }
   100% {
-    filter: drop-shadow(0 0 8px rgba(107, 0, 255, 0.6));
+    text-shadow: 0 0 20px rgba(0, 180, 216, 0.9);
   }
 }
 
-.search-container {
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
+@keyframes titleLine {
+  0% {
+    transform: scaleX(0.3);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0.3);
+    opacity: 0.5;
+  }
 }
 
-.search-input {
-  width: 100%;
-  padding: 12px 15px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
-  background-color: #2d2d2d;
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.search-input:focus {
-  box-shadow: 0 0 0 2px rgba(107, 0, 255, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-.search-input::placeholder {
-  color: #aaa;
-}
-
-.app-main {
-  flex: 1;
-  padding: 30px 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-  animation: fadeIn 0.8s ease-out;
+.app-description {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  animation: fadeIn 1s ease-out 0.5s forwards;
+  opacity: 0;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -100,31 +134,107 @@ body {
   }
 }
 
-.crypto-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: white;
 }
 
-.loading, .error-message, .no-results {
-  text-align: center;
-  padding: 50px 0;
-  font-size: 18px;
-  color: #aaa;
-  animation: pulse 2s ease-in-out infinite;
+.view-more-container {
+  margin: 40px 0;
+  animation: fadeIn 1s ease-out 1.2s forwards;
+  opacity: 0;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.8;
+.view-more-button {
+  background: linear-gradient(45deg, #30CFD0, #c43ad6);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.view-more-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #c43ad6, #30CFD0);
+}
+
+.search-container {
+  margin-bottom: 30px;
+  animation: fadeIn 1s ease-out 0.8s forwards;
+  opacity: 0;
+}
+
+.search-input {
+  padding: 12px 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 30px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 響應式設計調整 */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2.5rem;
   }
-  50% {
-    opacity: 0.4;
+  
+  .app-description {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+  
+  .search-input {
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .crypto-container {
+    gap: 15px;
+    padding: 10px 5px;
   }
 }
 
-.error-message {
-  color: #ff4757;
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .app-description {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+  
+  .view-more-button {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
 }
 
 .app-footer {
@@ -164,31 +274,5 @@ body {
   100% {
     opacity: 1;
     text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
-  }
-}
-
-@media (max-width: 768px) {
-  .crypto-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 0 5px;
-  }
-  
-  .app-header h1 {
-    font-size: 22px;
-  }
-  
-  .search-input {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
-
-  .app-main {
-    padding: 15px 10px;
-  }
-
-  .app-footer {
-    padding: 15px;
-    font-size: 12px;
   }
 }

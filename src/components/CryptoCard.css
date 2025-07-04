@@ -1,109 +1,147 @@
 .crypto-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 25px;
   margin: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
   animation: fadeIn 0.5s ease-out forwards;
   opacity: 0;
   transform: translateY(20px);
-  width: calc(50% - 20px);
-  min-width: 300px;
-  max-width: 400px;
+  width: calc(25% - 20px);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+}
+
+.crypto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .crypto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.crypto-card:hover::before {
+  opacity: 1;
+}
+
+.crypto-card img {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.crypto-card:hover img {
+  transform: scale(1.1) rotate(5deg);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.crypto-card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.crypto-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 15px;
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.crypto-name {
-  flex: 1;
-}
-
-.crypto-name h3 {
-  margin: 0;
-  font-size: 1.2rem;
+.crypto-card h2 {
+  font-size: 1.4rem;
+  margin: 0 0 5px;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.crypto-symbol {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.crypto-price {
-  margin: 15px 0;
-}
-
-.current-price {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-}
-
-.price-change {
+.crypto-card .symbol {
   font-size: 1rem;
-  margin: 5px 0;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 15px;
   font-weight: 500;
 }
 
-.price-up {
-  color: #00ff88;
+.crypto-card .price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.price-down {
-  color: #ff4444;
+.crypto-card .price-change {
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin: 5px 0;
+  transition: all 0.3s ease;
 }
 
-.crypto-details {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding-top: 15px;
+.crypto-card .price-change.positive {
+  background: rgba(48, 207, 208, 0.15);
+  color: #30CFD0;
+  border: 1px solid rgba(48, 207, 208, 0.3);
+}
+
+.crypto-card .price-change.negative {
+  background: rgba(255, 82, 82, 0.15);
+  color: #ff5252;
+  border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.crypto-card .market-info {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.detail-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.detail-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 4px;
+.crypto-card .market-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
-.detail-value {
+.crypto-card .market-info-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.crypto-card .market-info-label {
   font-size: 0.9rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
 }
 
-.value-number {
+.crypto-card .market-info-value {
+  font-size: 0.9rem;
+  color: #fff;
   font-weight: 600;
 }
 
@@ -130,7 +168,7 @@
   padding: 30px;
   width: 90%;
   max-width: 600px;
-  max-height: 90vh;
+  max-height: 80vh;
   overflow-y: auto;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -325,8 +363,21 @@
 /* 響應式設計 */
 @media (max-width: 768px) {
   .crypto-card {
-    width: calc(100% - 20px);
-    min-width: 280px;
+    width: calc(50% - 20px);
+    padding: 20px;
+  }
+  
+  .crypto-card img {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .crypto-card h2 {
+    font-size: 1.2rem;
+  }
+  
+  .crypto-card .price {
+    font-size: 1.2rem;
   }
 
   .modal-content {
@@ -336,15 +387,232 @@
 
   .modal-stats {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
-  .modal-title h2 {
-    font-size: 1.5rem;
+  .stat-item {
+    padding: 12px;
+  }
+
+  .stat-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+  }
+
+  .stat-content h5 {
+    font-size: 0.85rem;
+  }
+
+  .stat-content p {
+    font-size: 1rem;
+  }
+
+  .modal-description {
+    padding: 15px;
+  }
+
+  .modal-description h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-description p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .crypto-card {
+    width: 100%;
+    padding: 18px;
+  }
+  
+  .crypto-card img {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .crypto-card h2 {
+    font-size: 1.1rem;
+  }
+  
+  .crypto-card .price {
+    font-size: 1.1rem;
+  }
+  
+  .crypto-card .market-info-item {
+    padding: 6px 12px;
+  }
+  
+  .crypto-card .market-info-label,
+  .crypto-card .market-info-value {
+    font-size: 0.85rem;
+  }
+
+  .modal-content {
+    width: 98%;
+    padding: 15px;
+  }
+
+  .modal-header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
   }
 
   .modal-logo {
     width: 40px;
     height: 40px;
+    margin-right: 10px;
+  }
+
+  .modal-title h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-symbol {
+    font-size: 0.9rem;
+  }
+
+  .modal-price {
+    margin-bottom: 20px;
+  }
+
+  .current-price {
+    font-size: 1.3rem;
+  }
+
+  .modal-stats {
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 10px;
+  }
+
+  .stat-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+  }
+
+  .stat-content h5 {
+    font-size: 0.8rem;
+  }
+
+  .stat-content p {
+    font-size: 0.9rem;
+  }
+
+  .modal-description {
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .modal-description h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .modal-description p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .view-more-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .crypto-card {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+  }
+  
+  .crypto-card img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .crypto-card h2 {
+    font-size: 0.9rem;
+  }
+  
+  .current-price {
+    font-size: 1.1rem;
+  }
+  
+  .detail-label, .detail-value {
+    font-size: 0.75rem;
+  }
+  
+  .modal-content {
+    padding: 12px;
+  }
+  
+  .modal-close {
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+  }
+
+  .modal-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  .modal-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-symbol {
+    font-size: 0.8rem;
+  }
+
+  .current-price {
+    font-size: 1.1rem;
+  }
+
+  .stat-item {
+    padding: 8px;
+  }
+
+  .stat-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
+  .stat-content h5 {
+    font-size: 0.75rem;
+  }
+
+  .stat-content p {
+    font-size: 0.8rem;
+  }
+
+  .modal-description {
+    padding: 10px;
+  }
+
+  .modal-description h4 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .modal-description p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .view-more-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
   }
 }
 

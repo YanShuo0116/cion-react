@@ -81,7 +81,7 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <h1>SHUO加密貨幣網站實作</h1>
+        <h1 className="app-title">SHUO CRYPTO</h1>
         <div className="search-container">
           <input
             type="text"
@@ -99,7 +99,7 @@ function App() {
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : (
-          <div className="crypto-grid">
+          <div className="crypto-container">
             {filteredCoins.length > 0 ? (
               filteredCoins.map((coin, index) => (
                 <CryptoCard

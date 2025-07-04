@@ -223,7 +223,7 @@ const CryptoCard: React.FC<CryptoCardProps> = ({
       'gno': 'GNO (Gnosis): 預測市場平台，旨在提供準確、可靠的預測資訊。',
       'usdt-mantle': 'USDT (Mantle): 在 Mantle 網絡上的 USDT 的橋接版本。',
       'mina': 'MINA (Mina Protocol): 輕量級區塊鏈，採用 zk-SNARKs 技術，實現恆定大小的區塊鏈。',
-      'brett': 'BRETT: 基於 \"Boy\'s Club\" 迷因的加密貨幣。',
+      'brett': 'BRETT: 基於 "Boy\'s Club" 迷因的加密貨幣。',
       'busd': 'BUSD: Binance 發行的穩定幣，與美元 1:1 錨定，受監管且透明。',
       'rsr': 'RSR: 旨在建立一個去中心化的穩定幣系統，提供價格穩定性和去中心化特性。',
       'berastone': 'BERASTONE: StakeStone Berachain Vault Token 在Berachain鏈上運行。',
@@ -299,39 +299,25 @@ const CryptoCard: React.FC<CryptoCardProps> = ({
 
   return (
     <>
-      <div 
-        className={`crypto-card ${isExpanded ? 'expanded' : ''}`}
-        style={{ animationDelay }}
-        onClick={handleCardClick}
-      >
-        <div className="crypto-card-header">
-          <img src={image} alt={name} className="crypto-logo" style={{ animationDelay }} />
-          <div className="crypto-name">
-            <h3>{name}</h3>
-            <span className="crypto-symbol">{symbol.toUpperCase()}</span>
-          </div>
-        </div>
-        
-        <div className="crypto-price">
-          <p className="current-price">{formatCurrency(current_price)}</p>
-          <p className={`price-change ${priceChangeColor}`}>
+      <div className="crypto-card" onClick={handleCardClick}>
+        <img src={image} alt={name} />
+        <div>
+          <h2>{name}</h2>
+          <div className="symbol">{symbol.toUpperCase()}</div>
+          <div className="price">${current_price.toLocaleString()}</div>
+          <div className={`price-change ${price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
             {price_change_percentage_24h >= 0 ? '+' : ''}
             {price_change_percentage_24h.toFixed(2)}%
-          </p>
-        </div>
-        
-        <div className="crypto-details">
-          <div className="detail-item">
-            <span className="detail-label">市值:</span>
-            <span className="detail-value">
-              <span className="value-number">{formatLargeNumber(market_cap)}</span>
-            </span>
           </div>
-          <div className="detail-item">
-            <span className="detail-label">24小時交易量:</span>
-            <span className="detail-value">
-              <span className="value-number">{formatLargeNumber(total_volume)}</span>
-            </span>
+        </div>
+        <div className="market-info">
+          <div className="market-info-item">
+            <span className="market-info-label">市值:</span>
+            <span className="market-info-value">${formatLargeNumber(market_cap)}</span>
+          </div>
+          <div className="market-info-item">
+            <span className="market-info-label">24小時交易量:</span>
+            <span className="market-info-value">${formatLargeNumber(total_volume)}</span>
           </div>
         </div>
       </div>
