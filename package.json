@@ -2,7 +2,7 @@
   "name": "crypto-wallet-info",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://YanShuo0116.github.io/cion_react",
+  "homepage": "https://YanShuo0116.github.io/cion-react",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
